@@ -11,11 +11,21 @@ export const ListItem = (props) => {
 
   const element = document.createElement('div');
   element.classList.add('list-item');
+  element.classList.add('list-item--expanded');
   element.innerHTML = `
+    <div class="list-item__toolbar">
+      Tlačítka
+    </div>
     <button class="icon-btn btn-tick${tickClass}"></button>
     <div class="list-item__body">
       <div class="list-item__product">${product}</div>
       <div class="list-item__amount">${amount} ${unit}</div>
+    </div>
+    <div class="list-item__detail">
+      Detail položky
+    </div>
+    <div class="list-item__menu">
+      <button class="icon-btn btn-menu"></button>
     </div>
   `;
 
