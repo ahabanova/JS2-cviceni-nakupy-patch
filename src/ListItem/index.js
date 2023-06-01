@@ -1,17 +1,19 @@
 import './style.css';
 
 export const ListItem = (props) => {
-  const { day, item } = props;
+  const { day, item, expanded } = props;
   const { id, done, product, amount, unit } = item;
 
   let tickClass = '';
   if (done) {
     tickClass = ' btn-tick--on';
   }
-
   const element = document.createElement('div');
   element.classList.add('list-item');
-  element.classList.add('list-item--expanded');
+  if (expanded === true) {
+    element.classList.add('list-item--expanded');
+  }
+
   element.innerHTML = `
     <div class="list-item__toolbar">
       Tlačítka
@@ -51,5 +53,16 @@ export const ListItem = (props) => {
   };
 
   element.querySelector('.btn-tick').addEventListener('click', handleTick);
+
+  const handleMenu = () => {
+    element.replaceWith(
+      ListItem(
+        { day, item, expanded: !expanded }
+      )
+    )
+  }
+
+  const btnMenu = element.querySelector('.btn-menu')
+  btnMenu.addEventListener('click', handleMenu)
   return element;
 };
